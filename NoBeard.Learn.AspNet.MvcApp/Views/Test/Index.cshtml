@@ -1,2 +1,38 @@
-﻿<h1>Testna stranica</h1>
+﻿<h1 style="color: forestgreen">Testna stranica</h1>
+
+<p>Ovo je testna stranica</p>
+
+@{
+    var datum = DateTime.Now;
+    // var poruka = "Dobar dan!";
+
+    // if (datum.DayOfWeek == DayOfWeek.Saturday || datum.DayOfWeek == DayOfWeek.Sunday)
+    // {
+    //     poruka = "Ugodan vikend! :)";
+    // }
+    // else
+    // {
+    //     poruka = "Još radimo! :(";
+    // }
+}
+
+<h3>@datum</h3>
+@* <h4>@poruka</h4> *@
+
+@if (datum.DayOfWeek == DayOfWeek.Saturday || datum.DayOfWeek == DayOfWeek.Sunday)
+{
+    @:Ugodan vikend! :)
+}
+else
+{
+    @:Još radimo! :(
+}
+
+<div>
+    @for (int i = 0; i < 5; i++)
+    {
+        @i.ToString()
+        <br />
+    }
+</div>
 
