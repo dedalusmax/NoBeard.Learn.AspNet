@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Details";
+    decimal total = 0;
+    Model.Transactions.ForEach(_ => total += _.Amount);
 }
 
 <h1>Details</h1>
@@ -29,6 +31,18 @@
             @Html.DisplayFor(model => model.Total)
         </dd>
     </dl>
+
+    <table>
+        <thead>Transactions:</thead>
+        @foreach (var t in Model.Transactions)
+        {
+            <tr>
+                <td>@t.Amount</td>
+            </tr>
+        }
+    </table>   
+    <p>Total: @total</p>
+
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |

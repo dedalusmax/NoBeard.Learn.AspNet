@@ -30,6 +30,9 @@ public class AccountController : Controller
             Total = 200
         };
 
+        account.Transactions.Add(new() { Id = Guid.NewGuid(), Amount = 200 });
+        account.Transactions.Add(new() { Id = Guid.NewGuid(), Amount = -50 });
+
         return View(account);
     }
 
