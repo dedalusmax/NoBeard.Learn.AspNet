@@ -14,8 +14,15 @@ public class AccountController : Controller
             Name = "Tekući račun",
             Total = 200
         };
-        
-        var accounts = new List<Account> { account };
+
+        var account2 = new Account
+        {
+            Id = 2,
+            Name = "Žiro račun",
+            Total = 0
+        };
+
+        var accounts = new List<Account> { account, account2 };
 
         return View(accounts);
     }
