@@ -5,37 +5,41 @@ namespace NoBeard.Learn.AspNet.MvcApp.Controllers;
 
 public class AccountController : Controller
 {
+    // simulacija baze podataka
+    private static List<Account> _accounts;
+
+    public AccountController()
+    {
+        if (_accounts is null)
+        {
+            _accounts =
+            [
+                new Account
+                {
+                    Id = 1,
+                    Name = "Tekući račun",
+                    Total = 200
+                },
+                new Account
+                {
+                    Id = 2,
+                    Name = "Žiro račun",
+                    Total = 0
+                }
+            ];
+        }
+    }
+
     // GET: Account
     public ActionResult Index()
     {
-        var account = new Account        
-        {
-            Id = 1,
-            Name = "Tekući račun",
-            Total = 200
-        };
-
-        var account2 = new Account
-        {
-            Id = 2,
-            Name = "Žiro račun",
-            Total = 0
-        };
-
-        var accounts = new List<Account> { account, account2 };
-
-        return View(accounts);
+        return View(_accounts);
     }
 
     // GET: Account/Details/5
     public ActionResult Details(int id)
     {
-        var account = new Account
-        {
-            Id = 5,
-            Name = "Tekući račun",
-            Total = 200
-        };
+        var account = _accounts.SingleOrDefault(x => x.Id == id);
 
         account.Transactions.Add(new() { Id = Guid.NewGuid(), Amount = 200 });
         account.Transactions.Add(new() { Id = Guid.NewGuid(), Amount = -50 });
@@ -43,19 +47,21 @@ public class AccountController : Controller
         return View(account);
     }
 
-    // GET: AccountController/Create
+    // GET: Account/Create
     public ActionResult Create()
     {
         return View(new Account());
     }
 
-    // POST: AccountController/Create
+    // POST: Account/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Create(IFormCollection collection)
+    public ActionResult Create(Account model)
     {
         try
         {
+            _accounts.Add(model);
+
             return RedirectToAction(nameof(Index));
         }
         catch
@@ -64,19 +70,26 @@ public class AccountController : Controller
         }
     }
 
-    // GET: AccountController/Edit/5
+    // GET: Account/Edit/5
     public ActionResult Edit(int id)
     {
-        return View();
+        var account = _accounts.SingleOrDefault(x => x.Id == id);
+
+        return View(account);
     }
 
-    // POST: AccountController/Edit/5
+    // POST: Account/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id, IFormCollection collection)
+    public ActionResult Edit(int id, Account model)
     {
         try
         {
+            var account = _accounts.SingleOrDefault(x => x.Id == id);
+
+            account.Name = model.Name;
+            account.Total = model.Total;
+
             return RedirectToAction(nameof(Index));
         }
         catch
@@ -85,19 +98,25 @@ public class AccountController : Controller
         }
     }
 
-    // GET: AccountController/Delete/5
+    // GET: Account/Delete/5
     public ActionResult Delete(int id)
     {
-        return View();
+        var account = _accounts.SingleOrDefault(x => x.Id == id);
+
+        return View(account);
     }
 
-    // POST: AccountController/Delete/5
+    // POST: Account/Delete/5
     [HttpPost]
     [ValidateAntiForgeryToken]
     public ActionResult Delete(int id, IFormCollection collection)
     {
         try
         {
+            var account = _accounts.SingleOrDefault(x => x.Id == id);
+
+            _accounts.Remove(account);
+
             return RedirectToAction(nameof(Index));
         }
         catch
