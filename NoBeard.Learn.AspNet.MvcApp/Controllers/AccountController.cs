@@ -1,50 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NoBeard.Learn.AspNet.MvcApp.Models;
+using NoBeard.Learn.AspNet.MvcApp.Repositories;
 
 namespace NoBeard.Learn.AspNet.MvcApp.Controllers;
 
 public class AccountController : Controller
 {
-    // simulacija baze podataka
-    private static List<Account> _accounts;
+    private readonly AccountRepository _repository;
 
-    public AccountController()
+    public AccountController(AccountRepository repository)
     {
-        if (_accounts is null)
-        {
-            _accounts =
-            [
-                new Account
-                {
-                    Id = 1,
-                    Name = "Tekući račun",
-                    Total = 200
-                },
-                new Account
-                {
-                    Id = 2,
-                    Name = "Žiro račun",
-                    Total = 0
-                }
-            ];
-        }
+        _repository = repository;
     }
 
     // GET: Account
     public ActionResult Index()
     {
-        return View(_accounts);
+        return View(_repository.GetAccounts());
     }
 
     // GET: Account/Details/5
     public ActionResult Details(int id)
     {
-        var account = _accounts.SingleOrDefault(x => x.Id == id);
-
-        account.Transactions.Add(new() { Id = Guid.NewGuid(), Amount = 200 });
-        account.Transactions.Add(new() { Id = Guid.NewGuid(), Amount = -50 });
-
-        return View(account);
+        return View(_repository.GetAccountById(id));
     }
 
     // GET: Account/Create
@@ -60,7 +38,7 @@ public class AccountController : Controller
     {
         try
         {
-            _accounts.Add(model);
+            _repository.CreateAccount(model);
 
             return RedirectToAction(nameof(Index));
         }
@@ -73,9 +51,7 @@ public class AccountController : Controller
     // GET: Account/Edit/5
     public ActionResult Edit(int id)
     {
-        var account = _accounts.SingleOrDefault(x => x.Id == id);
-
-        return View(account);
+        return View(_repository.GetAccountById(id));
     }
 
     // POST: Account/Edit/5
@@ -85,10 +61,7 @@ public class AccountController : Controller
     {
         try
         {
-            var account = _accounts.SingleOrDefault(x => x.Id == id);
-
-            account.Name = model.Name;
-            account.Total = model.Total;
+            _repository.UpdateAccount(id, model);
 
             return RedirectToAction(nameof(Index));
         }
@@ -101,9 +74,7 @@ public class AccountController : Controller
     // GET: Account/Delete/5
     public ActionResult Delete(int id)
     {
-        var account = _accounts.SingleOrDefault(x => x.Id == id);
-
-        return View(account);
+        return View(_repository.GetAccountById(id));
     }
 
     // POST: Account/Delete/5
@@ -113,9 +84,7 @@ public class AccountController : Controller
     {
         try
         {
-            var account = _accounts.SingleOrDefault(x => x.Id == id);
-
-            _accounts.Remove(account);
+            _repository.DeleteAccount(id);
 
             return RedirectToAction(nameof(Index));
         }
