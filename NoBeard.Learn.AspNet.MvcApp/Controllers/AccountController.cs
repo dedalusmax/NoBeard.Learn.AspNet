@@ -6,9 +6,9 @@ namespace NoBeard.Learn.AspNet.MvcApp.Controllers;
 
 public class AccountController : Controller
 {
-    private readonly AccountRepository _repository;
+    private readonly IAccountRepository _repository;
 
-    public AccountController(AccountRepository repository)
+    public AccountController(IAccountRepository repository)
     {
         _repository = repository;
     }

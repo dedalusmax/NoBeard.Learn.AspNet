@@ -1,9 +1,8 @@
 ﻿using NoBeard.Learn.AspNet.MvcApp.Models;
-using System.Security.Principal;
 
 namespace NoBeard.Learn.AspNet.MvcApp.Repositories;
 
-public class AccountRepository
+public class AccountRepository : IAccountRepository
 {
     // simulacija baze podataka
     private static List<Account> _accounts;
