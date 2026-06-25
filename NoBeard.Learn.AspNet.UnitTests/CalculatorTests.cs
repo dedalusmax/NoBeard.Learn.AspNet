@@ -92,6 +92,28 @@ public class CalculatorTests
         Assert.Equal(expected, result);
     }
 
+    [Theory]
+    [MemberData(nameof(GetData))]
+    public void TestCalculateTax_TheoryMemberData_TaxCorrect(double amount, double tax, double expected)
+    {
+        // ARRANGE
+        var calc = new Calculator();
+
+        // ACT
+        var result = calc.CalculateTax(amount, tax);
+
+        // ASSERT
+        Assert.Equal(expected, result);
+    }
+
+    public static IEnumerable<object[]> GetData()
+    {
+        return
+        [
+            [50, 25, 62.50],
+            [100, 12, 112]
+        ];
+    }
 }
 
 public class CalculatorTestData : IEnumerable<object[]>
