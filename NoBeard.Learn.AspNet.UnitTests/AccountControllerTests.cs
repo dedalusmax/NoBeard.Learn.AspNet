@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Moq;
 using NoBeard.Learn.AspNet.MvcApp.Controllers;
 using NoBeard.Learn.AspNet.MvcApp.Models;
+using NoBeard.Learn.AspNet.MvcApp.Repositories;
 
 namespace NoBeard.Learn.AspNet.UnitTests;
 
@@ -106,7 +108,7 @@ public class AccountControllerTests
     }
 
     [Fact]
-    public void AccountController_IndexWithFakeRepo_ReturnsView()
+    public void AccountController_IndexWithFakeRepository_ReturnsView()
     {
         // arrange
         var repository = new FakeAccountRepository();
@@ -195,5 +197,71 @@ public class AccountControllerTests
         var accounts = result!.Model as List<Account>;
         Assert.NotNull(accounts);
         Assert.Equal(4, accounts.Count);
+    }
+
+    [Fact]
+    public void AccountController_IndexWithMockRepository_ReturnsView()
+    {
+        // arrange
+        var mock = new Mock<IAccountRepository>();
+        var controller = new AccountController(mock.Object);
+
+        // act
+        var result = controller.Index();
+
+        // assert
+        Assert.IsAssignableFrom<IActionResult>(result);
+        Assert.IsType<ViewResult>(result);
+    }
+
+    [Fact]
+    public void AccountController_IndexWithMockRepository_ReturnsListOfAccounts()
+    {
+        // arrange
+        var mock = new Mock<IAccountRepository>();
+
+        mock.Setup(repository => repository.GetAccounts())
+            .Returns(new List<Account>());
+
+        var controller = new AccountController(mock.Object);
+
+        // act
+        var result = controller.Index() as ViewResult;
+
+        // assert
+        Assert.NotNull(result);
+        Assert.NotNull(result.Model);
+        Assert.IsAssignableFrom<List<Account>>(result.Model);
+        var accounts = result.Model as List<Account>;
+        Assert.NotNull(accounts);
+    }
+
+    [Fact]
+    public void AccountController_IndexWithMockRepository_ReturnsDefaultAccount()
+    {
+        // arrange
+        var mock = new Mock<IAccountRepository>();
+
+        mock.Setup(repository => repository.GetAccounts())
+            .Returns(
+            [
+                new Account() { Id = 1, Name = "Super račun", Total = 0 }
+            ]);
+
+        var controller = new AccountController(mock.Object);
+
+        // act
+        var result = controller.Index() as ViewResult;
+
+        // assert
+        Assert.NotNull(result);
+        Assert.NotNull(result.Model);
+        Assert.IsAssignableFrom<List<Account>>(result.Model);
+        var accounts = result.Model as List<Account>;
+        Assert.NotNull(accounts);
+        Assert.Single(accounts);
+        var defaultAccount = accounts[0];
+        Assert.Equal(1, defaultAccount.Id);
+        Assert.Equal("Super račun", defaultAccount.Name);
     }
 }
