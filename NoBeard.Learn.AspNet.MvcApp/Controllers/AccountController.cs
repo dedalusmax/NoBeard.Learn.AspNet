@@ -10,6 +10,9 @@ public class AccountController : Controller
 
     public AccountController(IAccountRepository repository)
     {
+        if (repository is null)
+            throw new ArgumentNullException(nameof(repository));
+
         _repository = repository;
     }
 
