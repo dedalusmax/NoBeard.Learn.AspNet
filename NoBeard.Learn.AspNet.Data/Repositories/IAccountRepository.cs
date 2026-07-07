@@ -1,6 +1,6 @@
-﻿using NoBeard.Learn.AspNet.MvcApp.Models;
+﻿using NoBeard.Learn.AspNet.Data.Entities;
 
-namespace NoBeard.Learn.AspNet.MvcApp.Repositories;
+namespace NoBeard.Learn.AspNet.Data.Repositories;
 
 public interface IAccountRepository
 {

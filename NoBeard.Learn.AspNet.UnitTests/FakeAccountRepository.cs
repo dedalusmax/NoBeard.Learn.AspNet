@@ -1,5 +1,5 @@
-﻿using NoBeard.Learn.AspNet.MvcApp.Models;
-using NoBeard.Learn.AspNet.MvcApp.Repositories;
+﻿using NoBeard.Learn.AspNet.Data.Repositories;
+using NoBeard.Learn.AspNet.Data.Entities;
 
 namespace NoBeard.Learn.AspNet.UnitTests;
 

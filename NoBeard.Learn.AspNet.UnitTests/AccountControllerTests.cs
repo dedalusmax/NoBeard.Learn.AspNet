@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NoBeard.Learn.AspNet.MvcApp.Controllers;
-using NoBeard.Learn.AspNet.MvcApp.Models;
-using NoBeard.Learn.AspNet.MvcApp.Repositories;
+using NoBeard.Learn.AspNet.Data.Entities;
+using NoBeard.Learn.AspNet.Data.Repositories;
 
 namespace NoBeard.Learn.AspNet.UnitTests;
 

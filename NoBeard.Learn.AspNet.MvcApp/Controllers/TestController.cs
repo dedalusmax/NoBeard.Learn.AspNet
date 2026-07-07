@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NoBeard.Learn.AspNet.MvcApp.Models;
+using NoBeard.Learn.AspNet.Data.Entities;
 
 namespace NoBeard.Learn.AspNet.MvcApp.Controllers;
 

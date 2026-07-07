@@ -1,4 +1,4 @@
-﻿namespace NoBeard.Learn.AspNet.MvcApp.Models;
+﻿namespace NoBeard.Learn.AspNet.Data.Entities;
 
 public class Account
 {
