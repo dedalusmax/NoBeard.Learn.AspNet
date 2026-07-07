@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NoBeard.Learn.AspNet.Business.Services;
 using NoBeard.Learn.AspNet.Data.Entities;
 using NoBeard.Learn.AspNet.Data.Repositories;
 
@@ -7,13 +8,19 @@ namespace NoBeard.Learn.AspNet.MvcApp.Controllers;
 public class AccountController : Controller
 {
     private readonly IAccountRepository _repository;
+    private readonly IAccountService _service;
 
-    public AccountController(IAccountRepository repository)
+    public AccountController(IAccountRepository repository, IAccountService? accountService = null)
     {
         if (repository is null)
             throw new ArgumentNullException(nameof(repository));
 
         _repository = repository;
+
+        if (accountService is not null)
+        {
+            _service = accountService;
+        }
     }
 
     // GET: Account
@@ -42,6 +49,8 @@ public class AccountController : Controller
         try
         {
             _repository.CreateAccount(model);
+
+            // _service.OpenAccountAsync
 
             return RedirectToAction(nameof(Index));
         }
