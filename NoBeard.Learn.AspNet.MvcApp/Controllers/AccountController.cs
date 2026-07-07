@@ -19,13 +19,13 @@ public class AccountController : Controller
     // GET: Account
     public ActionResult Index()
     {
-        return View(_repository.GetAccounts());
+        return View(_repository.GetList());
     }
 
     // GET: Account/Details/5
     public ActionResult Details(int id)
     {
-        return View(_repository.GetAccountById(id));
+        return View(_repository.GetById(id));
     }
 
     // GET: Account/Create
@@ -41,7 +41,7 @@ public class AccountController : Controller
     {
         try
         {
-            _repository.CreateAccount(model);
+            _repository.Create(model);
 
             return RedirectToAction(nameof(Index));
         }
@@ -54,7 +54,7 @@ public class AccountController : Controller
     // GET: Account/Edit/5
     public ActionResult Edit(int id)
     {
-        return View(_repository.GetAccountById(id));
+        return View(_repository.GetById(id));
     }
 
     // POST: Account/Edit/5
@@ -64,7 +64,7 @@ public class AccountController : Controller
     {
         try
         {
-            _repository.UpdateAccount(id, model);
+            _repository.Update(id, model);
 
             return RedirectToAction(nameof(Index));
         }
@@ -77,7 +77,7 @@ public class AccountController : Controller
     // GET: Account/Delete/5
     public ActionResult Delete(int id)
     {
-        return View(_repository.GetAccountById(id));
+        return View(_repository.GetById(id));
     }
 
     // POST: Account/Delete/5
@@ -87,7 +87,7 @@ public class AccountController : Controller
     {
         try
         {
-            _repository.DeleteAccount(id);
+            _repository.Delete(id);
 
             return RedirectToAction(nameof(Index));
         }

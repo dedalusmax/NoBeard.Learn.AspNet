@@ -3,6 +3,6 @@ using NoBeard.Learn.AspNet.Domain.Repositories;
 
 namespace NoBeard.Learn.AspNet.Data.Repositories;
 
-public class AccountRepository : GenericRepository<Account>, IAccountRepository
+public class AccountTypeRepository : ReadOnlyRepository<AccountType>, IAccountTypeRepository
 {
 }

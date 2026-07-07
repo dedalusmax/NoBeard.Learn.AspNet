@@ -1,11 +1,15 @@
-﻿namespace NoBeard.Learn.AspNet.Domain.Models;
+﻿using System.ComponentModel;
 
-public class Account
+namespace NoBeard.Learn.AspNet.Domain.Models;
+
+public class Account : IEntity
 {
     public int Id { get; set; }
 
+    [DisplayName("Naziv računa")]
     public string Name { get; set; } = string.Empty;
 
+    [DisplayName("Saldo")]
     public decimal Total { get; set; }
 
     public List<AccountTransaction> Transactions { get; set; } = [];

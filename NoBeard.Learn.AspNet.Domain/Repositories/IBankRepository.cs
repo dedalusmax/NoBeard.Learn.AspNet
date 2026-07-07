@@ -2,6 +2,7 @@
 
 namespace NoBeard.Learn.AspNet.Domain.Repositories;
 
-public interface IAccountRepository : IGenericRepository<Account>
+public interface IBankRepository : IGenericRepository<Bank>
 {
+    //void DeleteAllAcccounts();
 }

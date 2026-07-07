@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<IAccountRepository, AccountRepository>();
+//TODO: register repositories
 
 var app = builder.Build();
 

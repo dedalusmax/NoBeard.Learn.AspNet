@@ -220,7 +220,7 @@ public class AccountControllerTests
         // arrange
         var mock = new Mock<IAccountRepository>();
 
-        mock.Setup(repository => repository.GetAccounts())
+        mock.Setup(repository => repository.GetList())
             .Returns(new List<Account>());
 
         var controller = new AccountController(mock.Object);
@@ -242,7 +242,7 @@ public class AccountControllerTests
         // arrange
         var mock = new Mock<IAccountRepository>();
 
-        mock.Setup(repository => repository.GetAccounts())
+        mock.Setup(repository => repository.GetList())
             .Returns(
             [
                 new Account() { Id = 1, Name = "Super račun", Total = 0 }

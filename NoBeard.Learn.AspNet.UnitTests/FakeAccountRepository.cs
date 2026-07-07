@@ -36,12 +36,12 @@ internal class FakeAccountRepository : IAccountRepository
         }
     }
 
-    public List<Account> GetAccounts()
+    public List<Account> GetList()
     {
         return _accounts;
     }
 
-    public Account? GetAccountById(int id)
+    public Account? GetById(int id)
     {
         var account = _accounts.SingleOrDefault(x => x.Id == id);
 
@@ -51,22 +51,22 @@ internal class FakeAccountRepository : IAccountRepository
         return account;
     }
 
-    public void CreateAccount(Account account)
+    public void Create(Account account)
     {
         _accounts.Add(account);
     }
 
-    public void UpdateAccount(int id, Account model)
+    public void Update(int id, Account model)
     {
-        var account = GetAccountById(id);
+        var account = GetById(id);
 
         account.Name = model.Name;
         account.Total = model.Total;
     }
 
-    public void DeleteAccount(int id)
+    public void Delete(int id)
     {
-        var account = GetAccountById(id);
+        var account = GetById(id);
 
         _accounts.Remove(account);
     }
