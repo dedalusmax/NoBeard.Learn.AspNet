@@ -1,6 +1,7 @@
 ﻿using NoBeard.Learn.AspNet.Data.Entities;
+using NoBeard.Learn.AspNet.Data.Repositories;
 
-namespace NoBeard.Learn.AspNet.Data.Repositories;
+namespace NoBeard.Learn.AspNet.Business.Repositories;
 
 public class AccountRepository : IAccountRepository
 {
