@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NoBeard.Learn.AspNet.Data\NoBeard.Learn.AspNet.Data.csproj" />
+    <ProjectReference Include="..\NoBeard.Learn.AspNet.Domain\NoBeard.Learn.AspNet.Domain.csproj" />
   </ItemGroup>
 
 </Project>

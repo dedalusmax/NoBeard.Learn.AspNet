@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NoBeard.Learn.AspNet.Data.Entities;
-using NoBeard.Learn.AspNet.Data.Repositories;
+using NoBeard.Learn.AspNet.Domain.Models;
+using NoBeard.Learn.AspNet.Domain.Repositories;
 
 namespace NoBeard.Learn.AspNet.MvcApp.Controllers;
 

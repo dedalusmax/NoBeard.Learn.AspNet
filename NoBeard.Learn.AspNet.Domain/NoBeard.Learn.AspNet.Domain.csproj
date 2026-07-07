@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\NoBeard.Learn.AspNet.Domain\NoBeard.Learn.AspNet.Domain.csproj" />
-  </ItemGroup>
-
 </Project>

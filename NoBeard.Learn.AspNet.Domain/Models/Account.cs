@@ -1,4 +1,4 @@
-﻿namespace NoBeard.Learn.AspNet.Data.Entities;
+﻿namespace NoBeard.Learn.AspNet.Domain.Models;
 
 public class Account
 {

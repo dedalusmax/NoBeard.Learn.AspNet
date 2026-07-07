@@ -1,6 +1,7 @@
 // 1. faza = builder
 
 using NoBeard.Learn.AspNet.Data.Repositories;
+using NoBeard.Learn.AspNet.Domain.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="NoBeard.Learn.AspNet.Data/NoBeard.Learn.AspNet.Data.csproj" Id="6cd36f58-f11f-4058-a408-7b4f042b7d90" />
+  <Project Path="NoBeard.Learn.AspNet.Domain/NoBeard.Learn.AspNet.Domain.csproj" Id="4f3f5d5b-981a-4453-9776-1db2aaacb9b4" />
   <Project Path="NoBeard.Learn.AspNet.MvcApp/NoBeard.Learn.AspNet.MvcApp.csproj" />
   <Project Path="NoBeard.Learn.AspNet.UnitTests/NoBeard.Learn.AspNet.UnitTests.csproj" Id="fda8700d-6f61-4367-a3a2-4072f30619ce" />
 </Solution>
