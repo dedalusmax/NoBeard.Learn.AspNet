@@ -1,0 +1,58 @@
+﻿@model IEnumerable<AccountTransaction>
+
+@{
+    decimal total = 0;
+    foreach (var t in Model)
+    {
+        total += t.Amount;
+    }
+}
+
+<h2>Transactions:</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => t.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => t.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => t.Note)
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>
+                Total
+            </td>
+            <td>
+                @total
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+        </tr>
+    </tbody>
+</table>

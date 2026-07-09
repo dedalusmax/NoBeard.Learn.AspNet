@@ -2,8 +2,8 @@
 
 @{
     ViewData["Title"] = "Details";
-    decimal total = 0;
-    Model.Transactions.ForEach(_ => total += _.Amount);
+    // decimal total = 0;
+    // Model.Transactions.ForEach(_ => total += _.Amount);
 }
 
 <h1>Details</h1>
@@ -32,7 +32,9 @@
         </dd>
     </dl>
 
-    <table>
+    @await Html.PartialAsync("_TransactionsPartial", Model.Transactions);
+
+    @* <table>
         <thead>Transactions:</thead>
         @foreach (var t in Model.Transactions)
         {
@@ -41,7 +43,7 @@
             </tr>
         }
     </table>   
-    <p>Total: @total</p>
+    <p>Total: @total</p> *@
 
 </div>
 <div>
