@@ -7,7 +7,7 @@
         </button>
         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
             <ul class="navbar-nav flex-grow-1">
-                <li class="nav-item">
+                @* <li class="nav-item">
                     <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                 </li>
                 <li class="nav-item">
@@ -15,7 +15,11 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-dark" asp-controller="Account">Accounts</a>
-                </li>
+                </li> *@
+
+                @await Html.PartialAsync("_NavLink", new { Title = "Home", Controller = "Home", Action = "Index" })
+                @await Html.PartialAsync("_NavLink", new { Title = "Privacy", Controller = "Home", Action = "Privacy" })
+                @await Html.PartialAsync("_NavLink", new { Title = "Accounts", Controller = "Account", Action = "Index" })
             </ul>
         </div>
     </div>
