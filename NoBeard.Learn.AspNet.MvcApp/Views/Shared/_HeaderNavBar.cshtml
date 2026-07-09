@@ -17,9 +17,14 @@
                     <a class="nav-link text-dark" asp-controller="Account">Accounts</a>
                 </li> *@
 
-                @await Html.PartialAsync("_NavLink", new { Title = "Home", Controller = "Home", Action = "Index" })
+@*                 @await Html.PartialAsync("_NavLink", new { Title = "Home", Controller = "Home", Action = "Index" })
                 @await Html.PartialAsync("_NavLink", new { Title = "Privacy", Controller = "Home", Action = "Privacy" })
                 @await Html.PartialAsync("_NavLink", new { Title = "Accounts", Controller = "Account", Action = "Index" })
+ *@
+
+                @await Html.PartialAsync("_NavLink", new NavLinkViewModel("Home", "Home", "Index"))
+                @await Html.PartialAsync("_NavLink", new NavLinkViewModel("Privacy", "Home", "Privacy"))
+                @await Html.PartialAsync("_NavLink", new NavLinkViewModel("Accounts", "Account", "Index"))
             </ul>
         </div>
     </div>
