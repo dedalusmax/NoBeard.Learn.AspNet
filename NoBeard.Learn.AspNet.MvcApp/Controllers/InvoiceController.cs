@@ -21,7 +21,7 @@ public class InvoiceController : Controller
     // GET: InvoiceController/Details/5
     public ActionResult Details(int id)
     {
-        return View();
+        return View(_repository.GetInvoiceById(id));
     }
 
     // GET: InvoiceController/Create

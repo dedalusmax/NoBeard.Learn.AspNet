@@ -39,6 +39,23 @@ public class InvoiceRepository : IInvoiceRepository
 
     public Invoice? GetInvoiceById(int id)
     {
-        throw new NotImplementedException();
+        var connectionString = "Server=(localdb)\\mssqllocaldb;Database=invoices;Trusted_Connection=true;";
+
+        using var connection = new SqlConnection(connectionString);
+        connection.Open();
+
+        using var command = new SqlCommand("SELECT InvoiceNumber, DateOfIssue FROM Invoices WHERE InvoiceNumber = @id", connection);
+        //command.Parameters.Add(new SqlParameter("@id", id));        
+        command.Parameters.AddWithValue("@id", id);
+
+        using SqlDataReader reader = command.ExecuteReader();
+
+        reader.Read();
+
+        return new Invoice
+        {
+            InvoiceNumber = reader.GetInt32(0),
+            DateOfIssue = reader.GetDateTime(1)
+        };
     }
 }
