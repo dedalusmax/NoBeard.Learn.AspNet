@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using NoBeard.Learn.AspNet.Domain.Models;
 using NoBeard.Learn.AspNet.Domain.Repositories;
 
@@ -6,13 +7,17 @@ namespace NoBeard.Learn.AspNet.Data.Repositories;
 
 public class InvoiceRepository : IInvoiceRepository
 {
-    public InvoiceRepository()
+    private readonly IConfiguration _configuration;
+
+    public InvoiceRepository(IConfiguration configuration)
     {
+        _configuration = configuration;
     }
 
     public List<Invoice> GetInvoices()
     {
-        var connectionString = "Server=(localdb)\\mssqllocaldb;Database=invoices;Trusted_Connection=true;";
+        //var connectionString = "Server=(localdb)\\mssqllocaldb;Database=invoices;Trusted_Connection=true;";
+        var connectionString = _configuration.GetConnectionString("DefaultConnection");
 
         using var connection = new SqlConnection(connectionString);
         connection.Open();
@@ -39,7 +44,7 @@ public class InvoiceRepository : IInvoiceRepository
 
     public Invoice? GetInvoiceById(int id)
     {
-        var connectionString = "Server=(localdb)\\mssqllocaldb;Database=invoices;Trusted_Connection=true;";
+        var connectionString = _configuration.GetConnectionString("DefaultConnection");
 
         using var connection = new SqlConnection(connectionString);
         connection.Open();
