@@ -64,6 +64,10 @@ finally
 
 */
 
+var logLevel = app.Configuration.GetValue<string>("Logging:LogLevel:Default");
+var featuresSection = app.Configuration.GetSection("Features"); 
+var connectionString = app.Configuration.GetConnectionString("DefaultConnection"); // section = "ConnectionStrings"
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
