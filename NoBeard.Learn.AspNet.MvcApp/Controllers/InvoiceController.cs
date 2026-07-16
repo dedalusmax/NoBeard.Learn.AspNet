@@ -19,13 +19,52 @@ public class InvoiceController : Controller
     // GET: InvoiceController
     public ActionResult Index()
     {
-        return View(new List<Invoice>());
+        if (_connection.State != System.Data.ConnectionState.Open)
+        {
+            _connection.Open();
+        }
+
+        using var command = new SqlCommand("SELECT InvoiceNumber, DateOfIssue FROM Invoices ORDER BY InvoiceNumber", _connection);
+
+        using SqlDataReader reader = command.ExecuteReader();
+
+        var result = new List<Invoice>();
+        while (reader.Read())
+        {
+            var invoice = new Invoice
+            {
+                InvoiceNumber = reader.GetInt32(0),
+                DateOfIssue = reader.GetDateTime(1)
+            };
+            result.Add(invoice);
+        }
+
+        return View(result);
     }
 
     // GET: InvoiceController/Details/5
     public ActionResult Details(int id)
     {
-        return View();
+        if (_connection.State != System.Data.ConnectionState.Open)
+        {
+            _connection.Open();
+        }
+
+        using var command = new SqlCommand("SELECT InvoiceNumber, DateOfIssue FROM Invoices WHERE InvoiceNumber = @id", _connection);
+        //command.Parameters.Add(new SqlParameter("@id", id));        
+        command.Parameters.AddWithValue("@id", id);
+
+        using SqlDataReader reader = command.ExecuteReader();
+
+        reader.Read();
+
+        var invoice = new Invoice
+        {
+            InvoiceNumber = reader.GetInt32(0),
+            DateOfIssue = reader.GetDateTime(1)
+        };
+
+        return View(invoice);
     }
 
     // GET: InvoiceController/Create
