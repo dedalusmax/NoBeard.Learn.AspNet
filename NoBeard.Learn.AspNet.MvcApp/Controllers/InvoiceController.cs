@@ -8,9 +8,10 @@ public class InvoiceController : Controller
 {
     private readonly SqlConnection _connection;
 
-    public InvoiceController()
+    public InvoiceController(IConfiguration configuration)
     {
-        var connectionString = "Server=(localdb)\\mssqllocaldb;Database=invoices;Trusted_Connection=true;";
+        //var connectionString = "Server=(localdb)\\mssqllocaldb;Database=invoices;Trusted_Connection=true;";
+        var connectionString = configuration.GetConnectionString("DefaultConnection");
         _connection = new SqlConnection(connectionString);
         _connection.Open();
     }
