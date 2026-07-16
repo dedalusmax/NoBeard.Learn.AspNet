@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NoBeard.Learn.AspNet.Domain.Models;
 using NoBeard.Learn.AspNet.Domain.Repositories;
 
 namespace NoBeard.Learn.AspNet.MvcApp.Controllers;
@@ -27,16 +28,18 @@ public class InvoiceController : Controller
     // GET: InvoiceController/Create
     public ActionResult Create()
     {
-        return View();
+        return View(new Invoice() { DateOfIssue = DateTime.Today } );
     }
 
     // POST: InvoiceController/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Create(IFormCollection collection)
+    public ActionResult Create(Invoice model)
     {
         try
         {
+            _repository.CreateInvoice(model);
+
             return RedirectToAction(nameof(Index));
         }
         catch

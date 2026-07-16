@@ -7,4 +7,6 @@ public interface IInvoiceRepository
     List<Invoice> GetInvoices();
 
     Invoice? GetInvoiceById(int id);
+
+    int CreateInvoice(Invoice invoice);
 }
