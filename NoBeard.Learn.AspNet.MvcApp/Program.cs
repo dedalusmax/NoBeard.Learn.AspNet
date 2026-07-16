@@ -9,11 +9,32 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<IAccountRepository, AccountRepository>();
-builder.Services.AddTransient<IInvoiceRepository, InvoiceRepository>();
 
 var app = builder.Build();
 
 // 2. faza = konfiguracija web hosta
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+    Console.WriteLine("Development environment");
+}
+else if (app.Environment.IsProduction())
+{
+    Console.WriteLine("Production environment");    
+}
+else if (app.Environment.IsStaging())
+{
+    Console.WriteLine("Staging environment");
+}
+else if (app.Environment.IsEnvironment("Testing"))
+{
+    Console.WriteLine("Testing environment");
+}
+else
+{
+    throw new Exception("Unknown environment");
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -34,6 +55,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-
 
 app.Run();

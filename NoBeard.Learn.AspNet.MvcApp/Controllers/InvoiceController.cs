@@ -1,27 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NoBeard.Learn.AspNet.Domain.Repositories;
 
 namespace NoBeard.Learn.AspNet.MvcApp.Controllers;
 
 public class InvoiceController : Controller
 {
-    private readonly IInvoiceRepository _repository;
-
-    public InvoiceController(IInvoiceRepository repository)
-    {
-        _repository = repository;        
-    }
-
     // GET: InvoiceController
     public ActionResult Index()
     {
-        return View(_repository.GetInvoices());
+        return View();
     }
 
     // GET: InvoiceController/Details/5
     public ActionResult Details(int id)
     {
-        return View(_repository.GetInvoiceById(id));
+        return View();
     }
 
     // GET: InvoiceController/Create
