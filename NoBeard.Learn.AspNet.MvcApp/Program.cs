@@ -1,5 +1,6 @@
 // 1. faza = builder
 
+using Microsoft.Data.SqlClient;
 using NoBeard.Learn.AspNet.Data.Repositories;
 using NoBeard.Learn.AspNet.Domain.Repositories;
 
@@ -35,6 +36,33 @@ else
 {
     throw new Exception("Unknown environment");
 }
+
+/*
+var connectionString = "Server=(localdb)\\mssqllocaldb;Database=invoices2;Trusted_Connection=true;";
+
+var sqlConnection = new SqlConnection(connectionString);
+
+try
+{
+    sqlConnection.Open();
+}
+catch (SqlException ex)
+{
+    Console.WriteLine($"Error connecting to database: {ex.Message}");
+    throw;
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Unexpected error: {ex.Message}");
+    throw;
+}
+finally
+{
+    sqlConnection.Close();
+    sqlConnection.Dispose();
+}
+
+*/
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

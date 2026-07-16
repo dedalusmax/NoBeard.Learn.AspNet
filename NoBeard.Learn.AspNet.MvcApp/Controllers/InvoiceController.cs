@@ -1,13 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using NoBeard.Learn.AspNet.Domain.Models;
 
 namespace NoBeard.Learn.AspNet.MvcApp.Controllers;
 
 public class InvoiceController : Controller
 {
+    private readonly SqlConnection _connection;
+
+    public InvoiceController()
+    {
+        var connectionString = "Server=(localdb)\\mssqllocaldb;Database=invoices;Trusted_Connection=true;";
+        _connection = new SqlConnection(connectionString);
+        _connection.Open();
+    }
+
     // GET: InvoiceController
     public ActionResult Index()
     {
-        return View();
+        return View(new List<Invoice>());
     }
 
     // GET: InvoiceController/Details/5
@@ -78,4 +89,22 @@ public class InvoiceController : Controller
             return View();
         }
     }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (_connection is not null)
+            {
+                if (_connection.State == System.Data.ConnectionState.Open)
+                {
+                    _connection.Close();
+                }
+                _connection.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+   
 }
