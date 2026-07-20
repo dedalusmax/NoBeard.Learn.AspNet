@@ -1,9 +1,13 @@
 // 1. faza = builder
 
+using NoBeard.Learn.AspNet.MvcApp.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IBookRepository, BookRepository>();
 
 var app = builder.Build();
 
