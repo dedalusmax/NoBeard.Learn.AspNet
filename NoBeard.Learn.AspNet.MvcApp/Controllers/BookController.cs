@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NoBeard.Learn.AspNet.MvcApp.Models;
 using NoBeard.Learn.AspNet.MvcApp.Repositories;
 
 namespace NoBeard.Learn.AspNet.MvcApp.Controllers;
@@ -20,16 +21,17 @@ public class BookController(IBookRepository repository) : Controller
     // GET: BookController/Create
     public ActionResult Create()
     {
-        return View();
+        return View(new Book());
     }
 
     // POST: BookController/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Create(IFormCollection collection)
+    public ActionResult Create(Book model)
     {
         try
         {
+            repository.CreateBook(model);
             return RedirectToAction(nameof(Index));
         }
         catch

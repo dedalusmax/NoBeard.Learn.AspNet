@@ -24,7 +24,8 @@ public class BookRepository : IBookRepository
 
     public void CreateBook(Book book)
     {
-        throw new NotImplementedException();
+        _context.Books.Add(book);
+        _context.SaveChanges();
     }
 
     public void UpdateBook(Book book)
