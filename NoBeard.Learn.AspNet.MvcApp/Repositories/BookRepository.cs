@@ -10,11 +10,4 @@ public class BookRepository : IBookRepository
     {
         _configuration = configuration;
     }
-
-    public IEnumerable<Book> GetAllBooks()
-    {
-        var connectionString = _configuration.GetConnectionString("DefaultConnection");
-
-        return [];
-    }
 }

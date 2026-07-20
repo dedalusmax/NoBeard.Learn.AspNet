@@ -8,7 +8,7 @@ public class BookController(IBookRepository repository) : Controller
     // GET: BookController
     public ActionResult Index()
     {
-        return View(repository.GetAllBooks());
+        return View();
     }
 
     // GET: BookController/Details/5

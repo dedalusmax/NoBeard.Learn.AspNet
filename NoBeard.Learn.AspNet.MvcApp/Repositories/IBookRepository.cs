@@ -4,5 +4,4 @@ namespace NoBeard.Learn.AspNet.MvcApp.Repositories;
 
 public interface IBookRepository
 {
-    IEnumerable<Book> GetAllBooks();
 }
