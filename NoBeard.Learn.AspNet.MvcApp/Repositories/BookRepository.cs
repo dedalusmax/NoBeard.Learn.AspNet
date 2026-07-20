@@ -14,12 +14,12 @@ public class BookRepository : IBookRepository
 
     public IEnumerable<Book> GetBooks()
     {
-        throw new NotImplementedException();
+        return _context.Books;
     }
 
     public Book? GetBook(int id)
     {
-        throw new NotImplementedException();
+        return _context.Books.Find(id);
     }
 
     public void CreateBook(Book book)

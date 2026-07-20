@@ -8,13 +8,13 @@ public class BookController(IBookRepository repository) : Controller
     // GET: BookController
     public ActionResult Index()
     {
-        return View();
+        return View(repository.GetBooks());
     }
 
     // GET: BookController/Details/5
     public ActionResult Details(int id)
     {
-        return View();
+        return View(repository.GetBook(id));
     }
 
     // GET: BookController/Create
