@@ -24,6 +24,27 @@ public class PetShopContext : DbContext
     {
         // Fluent API configurations can be added here if needed
 
+        //modelBuilder.Entity<PetShop>()
+        //    .HasKey(p => p.Id);
+
+        //modelBuilder.Entity<PetType>()
+        //    .Property(pt => pt.Name).HasMaxLength(50)
+        //    .IsRequired();
+
+        modelBuilder.Entity<PetShop>()
+            .HasIndex(x => new { x.Name, x.Address })
+            .IsUnique();
+
+        modelBuilder.Entity<Pet>()
+            .HasIndex(x => x.Name)
+            .IsUnique();
+
+        //modelBuilder.Entity<PetShop>()
+        //    .HasMany(p => p.Pets)
+        //    .WithOne(p => p.PetShop)
+        //    .HasForeignKey(p => p.PetShopId)
+        //    .OnDelete(DeleteBehavior.Cascade);
+
         base.OnModelCreating(modelBuilder);
     }
 
