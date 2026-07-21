@@ -1,14 +1,23 @@
 // 1. faza = builder
 
+using Microsoft.EntityFrameworkCore;
+using NoBeard.Learn.AspNet.MvcApp.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//builder.Services.AddDbContext<BookLibraryContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<PetShopContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
+
+// db context
+
+using var scope = app.Services.CreateScope();
+var dbContext = scope.ServiceProvider.GetRequiredService<PetShopContext>();
+dbContext.Database.Migrate();
 
 // 2. faza = konfiguracija web hosta
 

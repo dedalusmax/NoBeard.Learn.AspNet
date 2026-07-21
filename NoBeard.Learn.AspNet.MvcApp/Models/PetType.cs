@@ -10,4 +10,6 @@ public class PetType
 
     [Required, StringLength(50)]
     public required string Name { get; set; }
+
+    public string? Description { get; set; }
 }

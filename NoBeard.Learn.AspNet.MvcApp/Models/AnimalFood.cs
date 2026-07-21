@@ -12,4 +12,7 @@ public class AnimalFood
 
     [Required, Length(13, 13)]
     public required string Barcode { get; set; }
+
+    [Required]
+    public double Price { get; set; }
 }

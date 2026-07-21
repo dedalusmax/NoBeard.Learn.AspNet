@@ -11,6 +11,8 @@ public class PetShopContext : DbContext
 
     public DbSet<PetType> PetTypes { get; set; }
 
+    public DbSet<AnimalFood> AnimalFoods { get; set; }
+
     public PetShopContext()
     {
 
