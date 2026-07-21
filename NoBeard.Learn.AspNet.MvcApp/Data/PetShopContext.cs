@@ -11,6 +11,11 @@ public class PetShopContext : DbContext
 
     public DbSet<PetType> PetTypes { get; set; }
 
+    public PetShopContext()
+    {
+
+    }
+
     public PetShopContext(DbContextOptions<PetShopContext> options) : base(options) { }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
