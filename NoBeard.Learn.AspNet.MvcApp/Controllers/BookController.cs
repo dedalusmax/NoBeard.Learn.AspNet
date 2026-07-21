@@ -1,37 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NoBeard.Learn.AspNet.MvcApp.Models;
-using NoBeard.Learn.AspNet.MvcApp.Repositories;
 
 namespace NoBeard.Learn.AspNet.MvcApp.Controllers;
 
-public class BookController(IBookRepository repository) : Controller
+public class BookController : Controller
 {
     // GET: BookController
     public ActionResult Index()
     {
-        return View(repository.GetBooks());
+        return View();
     }
 
     // GET: BookController/Details/5
     public ActionResult Details(int id)
     {
-        return View(repository.GetBook(id));
+        return View();
     }
 
     // GET: BookController/Create
     public ActionResult Create()
     {
-        return View(new Book());
+        return View();
     }
 
     // POST: BookController/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Create(Book model)
+    public ActionResult Create(IFormCollection collection)
     {
         try
         {
-            repository.CreateBook(model);
             return RedirectToAction(nameof(Index));
         }
         catch

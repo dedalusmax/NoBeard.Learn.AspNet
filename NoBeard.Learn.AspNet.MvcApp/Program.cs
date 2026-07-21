@@ -1,7 +1,5 @@
 // 1. faza = builder
 
-using Microsoft.EntityFrameworkCore;
-using NoBeard.Learn.AspNet.MvcApp.Data;
 using NoBeard.Learn.AspNet.MvcApp.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,8 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<BookLibraryContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+//builder.Services.AddDbContext<BookLibraryContext>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 
