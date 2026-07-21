@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NoBeard.Learn.AspNet.MvcApp.Models;
 
+[Table("PetShops")]
 public class PetShop
 {
     [Key]
