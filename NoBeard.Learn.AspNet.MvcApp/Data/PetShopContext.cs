@@ -24,6 +24,12 @@ public class PetShopContext : DbContext
     {
         optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=PetShopDB;Trusted_Connection=True;MultipleActiveResultSets=true");
 
+        //optionsBuilder.UseSeeding((dbContext, seed) => {
+        //    // TODO: Implement seeding logic here if needed, or call a seeder class to seed the database.   
+        //});
+
+        optionsBuilder.UseSeeding((dbContext, _) => new PetShopSeeder().Seed(dbContext));
+
         base.OnConfiguring(optionsBuilder);
     }
 
