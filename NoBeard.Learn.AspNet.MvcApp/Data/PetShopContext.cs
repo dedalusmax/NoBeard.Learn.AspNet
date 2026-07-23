@@ -52,6 +52,23 @@ public class PetShopContext : DbContext
         //    .HasForeignKey(p => p.PetShopId)
         //    .OnDelete(DeleteBehavior.Cascade);
 
+        // SET IDENTITY_INSERT ON for PetShop table
+
+        modelBuilder.Entity<PetShop>().HasData(
+            new PetShop { Id = 1, Name = "Happy Paws", Address = "123 Main St" },
+            new PetShop { Id = 2, Name = "Furry Friends", Address = "456 Elm St" }
+        );
+
+        // SET IDENTITY_INSERT OFF for PetShop table
+
+        // SET IDENTITY_INSERT ON for PetType table
+
+        modelBuilder.Entity<PetType>().HasData(
+            new PetType { Id = 1, Name = "Dog" },
+            new PetType { Id = 2, Name = "Cat" },
+            new PetType { Id = 3, Name = "Bird" }
+        );  
+
         base.OnModelCreating(modelBuilder);
     }
 
