@@ -13,6 +13,9 @@ public class Pet
     [StringLength(250)]
     public string? Description { get; set; }
 
+    //[ForeignKey("PetShopId"), Column("PetShopId")]
+    //public int PetShop { get; set; }
+
     public int PetShopId { get; set; }
 
     [Required]
@@ -22,4 +25,10 @@ public class Pet
 
     [Required]
     public virtual PetType PetType { get; set; }
+
+    //[ConcurrencyCheck]
+    //public string Version { get; set; }
+
+    //[Timestamp]
+    //public byte[] DateTimeStamp { get; set; }
 }

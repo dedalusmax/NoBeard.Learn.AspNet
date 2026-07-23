@@ -19,4 +19,7 @@ public class PetShop
     public string? Email { get; set; }
 
     public virtual ICollection<Pet> Pets { get; set; } = [];
+
+    [NotMapped]
+    public int TotalPets => Pets.Count;
 }
